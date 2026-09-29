@@ -1,17 +1,35 @@
 # notebooklm-book-pipeline
 
-Chapter-level NotebookLM study artifact pipeline.
+Prepare chapter sources and a resumable NotebookLM artifact plan.
 
 ## What it does
 
-Split a book into chapter sources and prepare a manifest for Ukrainian audio overviews, slide decks, quizzes and infographics. Use `python3 scripts/book_pipeline.py --book /path/to/book.epub --mode prepare` first. Full execution requires an authenticated NotebookLM CLI; see `SKILL.md`. EPUB is preferred because chapter structure is more reliable.
+- Extracts EPUB, DOCX, PDF, Markdown, text or RTF
+- Keeps main chapters and divides each into three paragraph-aligned parts
+- Writes a manifest, chapter files and artifact plan
+- Can execute notebook and artifact creation through a NotebookLM CLI
 
-## Repository
+## Quick start
 
-- `SKILL.md`: usage and behavior
+Run `python3 scripts/book_pipeline.py --book /path/to/book.epub --mode prepare`. Inspect the chapter manifest before using `--mode execute --notebooklm-bin /path/to/notebooklm`.
 
-Source files are in `scripts/`, `references/`, `agents/` or `static/` where applicable.
+## Browse the repository
 
-## Notes
+- `SKILL.md` — workflow specification
+- `scripts` — implementation scripts
 
-Commands that use external services require your own authenticated account. Review generated outputs before sharing them.
+## Compatibility
+
+Python 3. EPUB structure is preferred; PDF extraction may require `pypdf`. Execute mode needs an authenticated NotebookLM CLI.
+
+## Quality checks
+
+Python syntax checked. Chapter detection and NotebookLM output should be inspected for each new book.
+
+## Security and privacy
+
+Inspect source files and your own input data before running or publishing outputs. Do not commit credentials, browser cookies, client documents or generated work directories.
+
+## Limits
+
+PDFs with weak heading structure may need manual chapter corrections. Generation quotas may interrupt long runs; the manifest records per-artifact status.
